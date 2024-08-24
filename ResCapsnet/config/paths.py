@@ -4,7 +4,7 @@ import os.path
 from . import training
 
 
-work_path = '/public/home/02488/bing/ResCapsnet-master/'
+work_path = '_workspace'
 """str: Path to parent directory containing program output."""
 
 extraction_path = os.path.join(work_path, 'features')
@@ -38,20 +38,21 @@ Dataset = collections.namedtuple('Dataset',
                                   ])
 """Data structure encapsulating information about a dataset."""
 
-_root_dataset_path = ("/public/home/02488/bing/Task4/")
+_root_dataset_path = ('/vol/vssp/AP_datasets/audio/audioset/'
+                      'task4_dcase2017_audio/official_downloads')
 """str: Path to root directory containing input audio clips."""
 
 training_set = Dataset(
     name='training',
     path=os.path.join(_root_dataset_path, 'training'),
-    metadata_path="/public/home/02488/bing/ResCapsnet-master/metadata/groundtruth_weak_label_training_set.csv",
+    metadata_path="metadata/groundtruth_weak_label_training_set.csv",
 )
 """Dataset instance for the training dataset."""
 
 validation_set = Dataset(
     name='validation',
     path=os.path.join(_root_dataset_path, 'testing'),
-    metadata_path="/public/home/02488/bing/ResCapsnet-master/metadata/groundtruth_strong_label_testing_set.csv",
+    metadata_path="metadata/groundtruth_strong_label_testing_set.csv",
 )
 """Dataset instance for the validation dataset.
 
@@ -62,7 +63,7 @@ Note:
 test_set = Dataset(
     name='test',
     path=os.path.join(_root_dataset_path, 'evaluation'),
-    metadata_path="/public/home/02488/bing/ResCapsnet-master/metadata/groundtruth_strong_label_evaluation_set.csv",
+    metadata_path="metadata/groundtruth_strong_label_evaluation_set.csv",
 )
 """Dataset instance for the test dataset.
 

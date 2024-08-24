@@ -49,20 +49,6 @@ def gccaps(input_shape, n_classes):
     # Apply capsule layer layer to each time slice
     caps = TimeDistributed(CapsuleLayer(n_capsules=n_classes,
                                         dim_capsule=8, routings=3))(x)
-
-    # Merge the aforementioned TimeDistributed outputs
-    x = Reshape((n_steps, -1))(caps)
-    x = BatchNormalization(axis=-1)(x)
-    
-    #After applying BiGRU to the capsule layer
-    rnnout = Bidirectional(GRU(64, return_sequences=True), merge_mode='concat',weights=None)(x)
-    
-    #Fully connected layer with time distribution
-    y = TimeDistributed(Dense(n_classes, activation='sigmoid'), name='localization_layer')(rnnout) 
-    
-    #The final output of the model uses softmax activation function
-    x = Lambda(exp_merge, output_shape=(n_classes,),
-               name='merge')(y)
                
     return Model(input_tensor, x, name='GCCaps')
 

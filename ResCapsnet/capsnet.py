@@ -38,7 +38,7 @@ def gccaps(input_shape, n_classes):
     #x = gated_conv.block(x, n_filters=64, pool_size=(2, 2))
     n_steps = int(x.shape[1])  # Number of time slices
 
-    # Apply primary capsule layer with batch norm and dropout
+    # Apply primary capsule layer with batch norm 
     x = capsules.primary_capsules(x, n_channels=16, dim_capsule=4,
                                   kernel_size=3, strides=(1, 2),
                                   padding='same', activation='relu',
